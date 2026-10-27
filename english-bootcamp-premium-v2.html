@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Premium University English Speaking Boot Camp</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0F19;--gl:rgba(255,255,255,.05);--bd:rgba(255,255,255,.12);--tx:#E5E7EB;--mut:#9CA3AF;--ac:#10B981;--on:#04130d;--bad:#F43F5E;--win:#10FF8A;--okt:#34D399}
+[data-theme=light]{--bg:#F9FAFB;--gl:rgba(255,255,255,.9);--bd:#E5E7EB;--tx:#111827;--mut:#6B7280;--ac:#4F46E5;--on:#fff;--bad:#DC2626;--win:#10D56F;--okt:#047857}
+*{box-sizing:border-box;transition:all .3s ease}
+body{margin:0;min-height:100vh;color:var(--tx);font:clamp(.95rem,.9rem + .25vw,1.1rem)/1.55 Inter,system-ui,sans-serif;background:radial-gradient(60rem 30rem at 85% -10%,color-mix(in srgb,var(--ac) 16%,transparent),transparent),var(--bg)}
+.wrap{max-width:72rem;margin-inline:auto;padding:clamp(.75rem,3vw,2rem)}
+h1{font-size:clamp(1.2rem,1rem + 1.6vw,2rem);margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(1.15rem,1rem + 1vw,1.6rem);margin:0;letter-spacing:-.01em}
+p{margin:.4rem 0}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.glass{background:var(--gl);border:1px solid var(--bd);border-radius:1rem;padding:clamp(1rem,2.5vw,1.5rem);margin-top:1rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+button,.btn{font:inherit;font-weight:600;cursor:pointer;background:var(--ac);color:var(--on);border:1px solid transparent;border-radius:.6rem;padding:.55rem 1rem;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+button:disabled{opacity:.4;cursor:default;transform:none}
+button.g{background:transparent;color:var(--tx);border-color:var(--bd)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.hud{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1rem}
+.hud .glass{margin-top:1rem;display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}
+.grow{flex:1 1 12rem;min-width:0}
+.ring{display:block;max-width:100%}
+.rw{position:relative;width:7rem;max-width:100%;flex:none}
+.rw.sm{width:5rem}
+.rw b{position:absolute;inset:0;display:grid;place-items:center;font-size:1.2rem}
+.rt{fill:none;stroke:var(--bd);stroke-width:8}
+.rp{fill:none;stroke:var(--ac);stroke-width:8;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .8s ease}
+.time{font-size:clamp(2rem,1.5rem + 3vw,3rem);font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.track{height:.5rem;background:var(--bd);border-radius:1rem;overflow:hidden;margin:.6rem 0}
+.track i{display:block;height:100%;width:0;background:var(--ac);border-radius:1rem}
+.row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.tabs{display:flex;gap:.5rem;overflow-x:auto;margin-top:1rem;padding-bottom:.25rem}
+.tabs button{background:var(--gl);color:var(--tx);border-color:var(--bd);white-space:nowrap}
+.tabs .on{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.tabs .ok::after{content:" ✓";color:var(--okt)}
+.card{border:2px solid var(--bd)}
+.card.done{border-color:var(--win);box-shadow:0 0 1.5rem color-mix(in srgb,var(--win) 40%,transparent)}
+.dh{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.win{color:var(--okt);font-weight:700}
+.task{border-top:1px solid var(--bd);padding-top:1rem;margin-top:1.25rem}
+.task label{display:flex;gap:.6rem;align-items:center;font-weight:600}
+.task input{width:1.25rem;height:1.25rem;accent-color:var(--ac);flex:none}
+em{font-style:normal;color:var(--mut);font-size:.85rem;margin-left:auto}
+.hint{color:var(--mut);font-size:.88rem}
+ol{padding-left:1.2rem;margin:.5rem 0}li{margin:.35rem 0}
+.vocab{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.5rem;margin:.6rem 0}
+.vocab div{border:1px solid var(--bd);border-radius:.6rem;padding:.5rem .7rem}
+.vocab span{display:block;color:var(--mut);font-size:.85rem}
+.game{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.game button{background:var(--gl);color:var(--tx);border:1px solid var(--bd);text-align:left;font-weight:500;font-size:.88rem;padding:.5rem .6rem}
+.game .sel{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}
+.game .hit{background:var(--win);color:#04130d;border-color:transparent;transform:scale(.97)}
+.game .bad{border-color:var(--bad);animation:sh .35s}
+@keyframes sh{25%{transform:translateX(-.3rem)}75%{transform:translateX(.3rem)}}
+.wave{display:flex;gap:.2rem;align-items:center;height:2rem}
+.wave i{flex:1;max-width:.35rem;background:var(--ac);border-radius:.2rem;animation:wv 1s ease-in-out infinite}
+@keyframes wv{0%,100%{height:.3rem}50%{height:2rem}}
+.out{border:1px dashed var(--bd);border-radius:.8rem;padding:1rem;margin-top:.8rem}
+.polish{border:1px solid var(--ac);background:color-mix(in srgb,var(--ac) 10%,transparent);border-radius:.8rem;padding:1rem;margin-top:.8rem}
+.banner{background:color-mix(in srgb,var(--ac) 14%,transparent);border-radius:.6rem;padding:.7rem 1rem;margin-top:.6rem;font-weight:600}
+.topic{border:1px solid var(--ac);border-left:.35rem solid var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent);border-radius:.6rem;padding:.7rem 1rem;margin:.6rem 0;font-size:1.05rem}
+.topic b{display:block}
+h3{font-size:1.05rem;margin:1.2rem 0 .2rem}
+.game button{width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0;min-height:2.4rem}
+.chips button{padding:.4rem .7rem;font-weight:500}
+.chips.ans{border:1px dashed var(--bd);border-radius:.6rem;padding:.4rem}
+.wr,.br{border:1px solid var(--bd);border-radius:.7rem;padding:.7rem;margin:.5rem 0}
+.wr input{font:inherit;flex:1 1 10rem;min-width:0;padding:.5rem .7rem;border-radius:.6rem;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+.wr input.bad{border-color:var(--bad);animation:sh .35s}
+.sc{display:grid;gap:.5rem}.sc div{border:1px solid var(--bd);border-radius:.6rem;padding:.5rem .7rem}
+.sc .ok{border-color:var(--ac)}.sc .no{border-color:var(--bad)}
+.styles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:.6rem;margin-top:.6rem}
+.styles div{border:1px solid var(--ac);background:color-mix(in srgb,var(--ac) 10%,transparent);border-radius:.7rem;padding:.8rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>University English Speaking Boot Camp</h1>
+    <button class="g" id="themeBtn" data-a="th" aria-label="Toggle dark and light mode">☀ Light</button>
+  </header>
+
+  <section class="hud" aria-label="Dashboard">
+    <div class="glass">
+      <div class="rw"><svg class="ring" viewBox="0 0 100 100"><circle class="rt" cx="50" cy="50" r="45"/><circle class="rp" id="mring" cx="50" cy="50" r="45"/></svg><b id="mpct">0%</b></div>
+      <div class="grow"><b>Master progress</b><p class="hint" id="msub"></p><p class="hint">Saved automatically on this device.</p></div>
+    </div>
+    <div class="glass">
+      <div class="grow">
+        <b>30-minute focus timer</b>
+        <div class="time" id="ptime">30:00</div>
+        <div class="track"><i id="pbar"></i></div>
+        <div class="row"><button data-a="ps">Start</button><button class="g" data-a="pp">Pause</button><button class="g" data-a="pr">Reset</button></div>
+        <p id="pmsg" class="hint">One task, phone away, notifications off.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="tabs" id="tabs" aria-label="Days"></nav>
+  <main id="day"></main>
+</div>
+
+<script>
+const D=[
+{t:"Airport Customs, Visas & Boarding Gates",yt:"English conversation at airport and customs check",
+v:[["Terminal","Building where you board flights"],["Boarding Pass","Ticket that lets you board"],["Carry-on","Small bag kept with you on the plane"],["Layover","Short wait between two flights"],["Customs","Border check for goods you bring in"],["Baggage Claim","Area where you collect your suitcase"],["Declaration","Form listing what you are bringing in"],["Connecting Flight","Second flight after a layover"],["Gate Number","Number of your departure door"],["ID Check","Officer checks your passport or card"]],
+c:["Excuse me, where is Gate 14?","I'm here to study at the university for four years.","My connecting flight leaves in two hours. Which way is it?","I have nothing to declare. Just books and clothes.","Where is the baggage claim for my flight?"],
+n:"Excuse me, could you tell me where Gate 14 is? I have a connecting flight and I'm traveling to start my university studies."},
+{t:"Public Commutes & Navigating to Campus",yt:"Practical English conversations asking for directions and public transit",
+v:[["One-Way Ticket","Ticket for one direction only"],["Platform","Place where you wait for a train"],["Transit Map","Map of bus and train lines"],["Timetable","List of departure times"],["Bus Stop","Place where buses pick up people"],["Route","The path a bus or train follows"],["Transfer","Change from one line to another"],["Fare","Price of a ride"],["Main Entrance","Front gate of a building"],["Campus Map","Map of university buildings"]],
+c:["Does this bus go to the main entrance of the campus?","How much is the fare to the university?","Which platform do I need for the city center?","Where do I transfer to reach the campus?","Could you show me where we are on the campus map?"],
+n:"Hi, does this bus go to the university's main entrance? And how much is the fare?"},
+{t:"Campus Grocery Stores & Halal Café Dining",yt:"English speaking at a grocery store and ordering coffee",
+v:[["To-go","Food you carry out"],["Takeaway","Another word for to-go food"],["Pay by Card","Use a bank card instead of cash"],["Halal Option","Food that follows Islamic rules"],["Receipt","Paper proof of payment"],["Ingredient Label","List of what is inside food"],["Self-Checkout","Machine where you scan and pay yourself"],["Total Price","Final amount to pay"],["Expiry Date","Last day food is safe to eat"],["Table for One","Asking for a seat for one person"]],
+c:["Do you have a halal option on the menu?","Could I get a medium coffee to go, please?","Can I check the ingredient label? Does this contain pork?","Can I pay by card, and could I have a receipt?","Excuse me, how does this self-checkout work?"],
+n:"Hi, could I get a medium coffee to go, please? Do you have a halal option for lunch?"},
+{t:"Making Peers, Major Choices & Small Talk",yt:"How to introduce yourself to peers university small talk",
+v:[["Student Housing","Rooms or flats for students"],["University Major","Main subject you study"],["Semester","Half of the school year"],["Group Project","Work done as a team"],["Classmate","Person in the same class"],["Orientation","Welcome week for new students"],["Stay in Touch","Keep contact later"],["Campus Cafe","Coffee shop on campus"],["Social Handle","Your username on social media"],["Freshman","First-year student"]],
+c:["Hi, I'm a freshman. I just moved here last week.","What is your major? Do you like it?","Are you living in student housing too?","Do you want to join my group project team?","Let's stay in touch. What's your social handle?"],
+n:"Hi, nice to meet you! I'm a freshman and I just moved here. What's your major?"},
+{t:"Administrative Paperwork, Student Accounts & SIM Cards",yt:"English dialogue opening a bank account and buying sim card",
+v:[["Address Registration","Telling the city where you live"],["Bank Account","Place to keep your money"],["Prepaid SIM","Phone chip you pay for in advance"],["Data Plan","Monthly mobile internet package"],["Student ID","Card that proves you are a student"],["Registration Form","Paper you fill in to sign up"],["Appointment","Time booked to meet someone"],["Signature","Your name written by hand"],["Verification","Checking that your details are true"],["Terms & Conditions","Rules you agree to"]],
+c:["I'd like to book an appointment to register my address.","What documents do I need to open a bank account?","I want a prepaid SIM with a good data plan.","Where do I sign this registration form?","How long does the verification take?"],
+n:"Hello, I'd like to open a bank account and buy a prepaid SIM. Which documents do I need to bring?"},
+{t:"Lecture Halls, Library Rules & Talking to Professors",yt:"English classroom phrases university conversation tips",
+v:[["Lecture Hall","Big room for classes"],["Office Hours","Times a professor meets students"],["Syllabus","Plan of a course"],["Research Paper","Long written study on a topic"],["Study Group","Students learning together"],["Assignment","Homework task from a teacher"],["Clarification","Extra explanation"],["Textbook","Main book for a course"],["Main Library","Largest library on campus"],["Attendance","Being present in class"]],
+c:["Excuse me, is this the lecture hall for economics?","Professor, could I ask a question during your office hours?","Could you give me some clarification on the assignment?","Is attendance required for this course?","Do you want to join my study group at the main library?"],
+n:"Excuse me, professor, could you clarify the assignment? And when are your office hours?"},
+{t:"Managing Crises, Lost Documents & Emergency Hubs",yt:"English phrases for emergencies and asking for help abroad",
+v:[["Lost and Found","Place for missing items"],["International Office","Campus office that helps foreign students"],["Emergency Contact","Person to call in a crisis"],["Pharmacy","Shop for medicine"],["Medical Center","Campus place for doctors"],["Clinic","Small place for health care"],["Out of Order","Not working"],["Assistance","Help"],["Helpline","Phone number for support"],["Urgent","Needs action right now"]],
+c:["Excuse me, I lost my student ID. Where is the lost and found?","I need to speak to the international office. It's urgent.","Where is the nearest pharmacy?","I don't feel well. Is there a medical center on campus?","This machine is out of order. Can you help me?"],
+n:"Excuse me, I lost my student ID and it's urgent. Could you help me find the international office?"}
+];
+const X=[
+{tp:"Explaining Student Travel Intention to Customs Office",
+pv:["Hi, I'm here to study at the university. I'll be staying for four years.","Good afternoon, officer. I am entering the country to pursue a four-year undergraduate degree at the university.","Hi! I'm here for school. I'm starting my degree next week."],
+p:[["Customs","Stress the first syllable: CUS-toms."],["Gate","Use a long 'ay' sound and a clear final 't'."],["Declare","Stress the second syllable: de-CLARE."]],
+s:[["Please show your boarding pass at the gate.",1],["I have a long layover in Istanbul tonight.",3],["I need to fill out the declaration form.",6],["My carry-on is small enough for the cabin.",2],["Excuse me, what is my gate number?",8]]},
+{tp:"Asking Local Commuters for Campus Directions",
+pv:["Hey, sorry to bother you. Which bus gets me to the university campus?","Excuse me, could you please tell me which route leads to the university's main entrance?","Hey, quick question. Is this the right bus for campus?"],
+p:[["Platform","Stress the first syllable: PLAT-form."],["Ticket","Say TICK-it, not tick-ET."],["Route","Say it like 'root' with a short vowel."]],
+s:[["I would like a one-way ticket, please.",0],["Which platform does the train leave from?",1],["Where is the nearest bus stop?",4],["How much is the fare to campus?",7],["Please check the timetable for the next bus.",3]]},
+{tp:"Inquiring about Halal Ingredients and Paying at Checkout",
+pv:["Hi, is this halal? Does it have any pork in it? I'll pay by card.","Excuse me, could you confirm whether this product contains any non-halal ingredients? I would like to pay by card.","Quick question. Is this halal? Great, I'll take it. Card is fine, right?"],
+p:[["Halal","Say ha-LAL with a clear second syllable."],["Ingredient","Four syllables: in-GREE-dee-ent."],["Receipt","The 'p' is silent: ri-SEET."]],
+s:[["Is there a halal option on the menu?",3],["Can I pay by card at the counter?",2],["Could I have a receipt, please?",4],["I always read the ingredient label first.",5],["Excuse me, a table for one, please.",9]]},
+{tp:"Introducing Your Major and Background to New Classmates",
+pv:["Hi, I'm new here. I'm studying computer science and I just moved from abroad.","Hello, it's a pleasure to meet you. I am majoring in computer science, and I recently relocated from abroad to study here.","Hey! I'm new in town. I'm majoring in computer science. What about you?"],
+p:[["Major","Say MAY-jer with a soft 'j' sound."],["Semester","Say se-MES-ter and stress the middle."],["Freshman","Blend 'sh' and 'm': FRESH-man."]],
+s:[["I am a freshman studying computer science.",9],["What is your university major?",1],["Let's stay in touch after orientation.",6],["My classmate invited me to a group project.",3],["I live in student housing near campus.",0]]},
+{tp:"Registering Your Address and Requesting a Student Bank Account",
+pv:["Hi, I need to register my address and open a student bank account. What do I need to bring?","Good morning. I would like to register my address and apply for a student bank account. Could you tell me which documents are required?","Hi, I'm here to sort out my address and open a student account. What should I bring?"],
+p:[["Registration","Stress the third syllable: reg-is-TRAY-shun."],["Signature","Say SIG-na-cher."],["Appointment","Stress the middle: a-POINT-ment."]],
+s:[["I need an appointment for address registration.",0],["I would like to open a bank account.",1],["Can I buy a prepaid SIM here?",2],["Please sign the registration form here.",5],["Which data plan is the cheapest?",3]]},
+{tp:"Asking a Professor for Clarification After a Lecture",
+pv:["Hi, Professor. I didn't quite get the last part. Could you explain it again?","Excuse me, Professor. Could you please clarify the final point of today's lecture?","Sorry to catch you, Professor. I got a bit lost at the end. Could you go over it once more?"],
+p:[["Syllabus","Say SIL-a-bus."],["Clarification","Stress the fourth syllable: clar-i-fi-KAY-shun."],["Assignment","Stress the middle: a-SIGN-ment."]],
+s:[["Is this the lecture hall for economics?",0],["When are your office hours, professor?",1],["Could you give me clarification on this assignment?",6],["I joined a study group at the library.",4],["The syllabus says attendance is required.",2]]},
+{tp:"Reporting a Lost Student ID and Passport to the International Office",
+pv:["Hi, I lost my student ID and my passport. Can you help me?","Good afternoon. I wish to report that my student ID and passport have been lost. Could you advise me on the next steps?","Hi, I'm in a bit of a pickle. I've lost my student ID and passport. What should I do?"],
+p:[["Pharmacy","Say FAR-ma-see; 'ph' sounds like 'f'."],["Emergency","Stress the second syllable: e-MER-jen-see."],["Urgent","Say UR-jent; the 'g' sounds like 'j'."]],
+s:[["Where is the lost and found?",0],["Please call my emergency contact.",2],["The pharmacy is open until midnight.",3],["This elevator is out of order.",6],["I need urgent assistance, please.",9]]}
+];
+D.forEach((x,i)=>Object.assign(x,X[i]));
+const TASKS=["Video Shadowing","Quick Chat Drills","Vocabulary Review & 3 Games","Recording & Pronunciation Check"];
+const FLAWS=["Long pauses between phrases. Link short phrases together.","Speaking fast on long words. Slow down at the ends of sentences.","Filler sounds like 'um' appeared. Pause silently instead.","Flat intonation on questions. Raise your voice at the end of a question.","Some words ran together. Say each key word clearly."];
+const STEPS=["Transcribing audio...","Scoring each target sound...","Checking pacing..."];
+const STYLES=["Casual Style","Academic / Formal Style","Fast Idiomatic Style"];
+const $=s=>document.querySelector(s),pick=a=>a[Math.floor(Math.random()*a.length)];
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),norm=s=>s.toLowerCase().replace(/[^a-z0-9]/g,"");
+const shuf=(a,k)=>{const r=a.slice();let s=k*7919+13;for(let i=r.length-1;i>0;i--){s=(s*1103515245+12345)%2147483648;const j=s%(i+1);[r[i],r[j]]=[r[j],r[i]]}return r};
+let S={tasks:{},g:{},theme:"dark"},cur=0,qt=null,rec=null,sel=null,miss=0,bs={},at=0,pm={left:1800,id:0};
+try{Object.assign(S,JSON.parse(localStorage.getItem("bootcamp3")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("bootcamp3",JSON.stringify(S))}catch(e){}};
+const T=d=>S.tasks[d]||(S.tasks[d]=[0,0,0,0]),G=d=>S.g[d]||(S.g[d]={m:[],w:[],b:[]});
+const dayPct=d=>T(d).filter(Boolean).length*25;
+const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+const ring=(id,p)=>{$(id).style.strokeDashoffset=283*(1-p/100)};
+const R='<svg class="ring" viewBox="0 0 100 100"><circle class="rt" cx="50" cy="50" r="45"/><circle class="rp" id="dring" cx="50" cy="50" r="45"/></svg>';
+
+function setTask(d,i,v){T(d)[i]=v?1:0;save();refresh()}
+function theme(){S.theme=S.theme==="dark"?"light":"dark";applyTheme();save()}
+function applyTheme(){document.documentElement.dataset.theme=S.theme;$("#themeBtn").textContent=S.theme==="dark"?"☀ Light":"🌙 Dark"}
+function beep(){try{const a=new(window.AudioContext||window.webkitAudioContext)();[0,.35,.7].forEach(t=>{const o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=880;g.gain.value=.15;o.start(a.currentTime+t);o.stop(a.currentTime+t+.25)})}catch(e){}}
+
+function pShow(){$("#ptime").textContent=fmt(pm.left);$("#pbar").style.width=(1-pm.left/1800)*100+"%"}
+function pStart(){if(pm.id)return;$("#pmsg").textContent="Deep focus on. Finish one task before you stop.";pm.id=setInterval(()=>{pm.left--;pShow();if(pm.left<=0){pPause();beep();$("#pmsg").textContent="Session complete. Take a 5-minute break."}},1000)}
+function pPause(){clearInterval(pm.id);pm.id=0}
+function pReset(){pPause();pm.left=1800;pShow();$("#pmsg").textContent="One task, phone away, notifications off."}
+
+function stopQ(){if(qt)clearInterval(qt.id);qt=null}
+function showQ(){const l=qt?qt.left:120;$("#qtime").textContent=fmt(l);$("#qbar").style.width=(120-l)/120*100+"%"}
+function startQ(){if(qt)return;$("#qmsg").textContent="Keep talking out loud until the buzzer!";qt={left:120,id:setInterval(()=>{qt.left--;showQ();if(qt.left<=0){stopQ();$("#qtime").textContent="0:00";$("#qbar").style.width="100%";$("#qmsg").textContent="🔔 Buzzer! Drill complete.";beep();setTask(cur,1,true)}},1000)};showQ()}
+function resetQ(){stopQ();showQ();$("#qmsg").textContent="Answer the 5 prompts out loud, without stopping."}
+
+function rb(r){$("#brec").disabled=r;$("#bstop").disabled=!r;$("#bplay").disabled=r||!(rec&&rec.url)}
+function killRec(){at++;if(rec){if(rec.mr.state==="recording"){rec.mr.onstop=null;rec.mr.stop()}rec.st.getTracks().forEach(t=>t.stop());if(rec.url)URL.revokeObjectURL(rec.url)}rec=null}
+async function startRec(){
+  try{
+    const st=await navigator.mediaDevices.getUserMedia({audio:true});
+    killRec();const mr=new MediaRecorder(st),ch=[];rec={mr,st,url:null};
+    mr.ondataavailable=e=>ch.push(e.data);
+    mr.onstop=()=>{st.getTracks().forEach(t=>t.stop());rec.url=URL.createObjectURL(new Blob(ch,{type:mr.mimeType}));analyze()};
+    mr.start();$("#bstat").textContent="● Recording... speak about today's topic.";$("#fb").innerHTML="";rb(true);
+  }catch(e){$("#bstat").textContent="Microphone unavailable. Allow microphone access in your browser and try again."}
+}
+function stopRec(){if(rec&&rec.mr.state==="recording")rec.mr.stop()}
+function playRec(){if(rec&&rec.url)new Audio(rec.url).play()}
+function clearRec(){killRec();$("#fb").innerHTML="";$("#bstat").textContent="Recording cleared. Press Record to try again.";rb(false);setTask(cur,3,false)}
+function analyze(){
+  const d=cur,id=++at;$("#bstat").textContent="Recording saved. Tick the task box when you are done practicing.";rb(false);
+  $("#fb").innerHTML='<div class="out"><b>AI Audio Analyzer Engine</b><div class="wave">'+Array.from({length:24},(_,i)=>`<i style="animation-delay:${(i%12)*.08}s"></i>`).join("")+'</div><p class="hint" id="step">'+STEPS[0]+'</p></div>';
+  let k=0;const iv=setInterval(()=>{k++;if($("#step")&&k<3)$("#step").textContent=STEPS[k]},700);
+  setTimeout(()=>{
+    clearInterval(iv);if(id!==at||d!==cur||!$("#fb"))return;
+    const sc=D[d].p.map(([w,t])=>[w,t,60+Math.floor(Math.random()*40)]);
+    const pr=Math.round(sc.reduce((a,b)=>a+b[2],0)/3),cl=70+Math.floor(Math.random()*29);
+    const f=FLAWS.slice().sort(()=>Math.random()-.5).slice(0,2);
+    $("#fb").innerHTML=`<div class="out"><p><b>[Clarity Score]</b> ${cl}%</p><div class="track"><i style="width:${cl}%"></i></div>
+    <p><b>[Pronunciation Score]</b> ${pr}% ${pr>=90?"🏆":"💪"}</p><div class="track"><i style="width:${pr}%"></i></div>
+    <p><b>[Sound Check]</b> Target words for this topic</p>
+    <div class="sc">${sc.map(([w,t,s])=>`<div class="${s>=80?"ok":"no"}"><b>${w}</b> ${s}% ${s>=80?"✓ Clear":"⚠ Needs work"}<span class="hint"> ${t}</span></div>`).join("")}</div>
+    <p><b>[Pacing Flaws]</b></p><ul>${f.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <div class="banner">💡 Would you like to view polished, native-sounding alternatives to express this topic?</div>
+    <div class="row"><button data-a="yes">Yes, show me</button><button class="g" data-a="no">Not now</button></div>
+    <div id="pol"></div><p class="hint">Simulated evaluation for practice. Your audio stays in this browser.</p></div>`;
+  },2300);
+}
+function showPolish(y){$("#pol").innerHTML=y?`<h3>Polished Native Version</h3><div class="styles">${D[cur].pv.map((t,i)=>`<div><b>${STYLES[i]}</b><p>“${t}”</p></div>`).join("")}</div><p class="hint">Say each version out loud, then record again.</p>`:""}
+
+function scoreG(auto){
+  const d=cur,g=G(d),pts=Math.round(g.m.length*10+g.w.length*20+g.b.length*100/3);
+  $("#gscore").textContent=`Match ${g.m.length}/10 · Writing ${g.w.length}/5 · Builder ${g.b.length}/3 · Score ${pts}/300 · ${miss} match misses`;
+  const all=g.m.length===10&&g.w.length===5&&g.b.length===3;
+  $("#badge").textContent=all?"🏅 Success badge earned: Vocabulary Master!":"";
+  if(auto&&all&&!T(d)[2])setTask(d,2,true);
+}
+function renderMatch(){
+  const v=D[cur].v,g=G(cur).m,p=j=>(j*3+1)%10;
+  $("#game").innerHTML=`<div>${v.map((a,i)=>`<button data-w="${i}" class="${g.includes(i)?"hit":sel===i?"sel":""}" ${g.includes(i)?"disabled":""}>${a[0]}</button>`).join("<p></p>")}</div><div>${v.map((_,j)=>`<button data-m="${p(j)}" class="${g.includes(p(j))?"hit":""}" ${g.includes(p(j))?"disabled":""}>${v[p(j)][1]}</button>`).join("<p></p>")}</div>`;
+}
+function match(m,el){
+  if(sel===null){el.classList.add("bad");setTimeout(()=>el.classList.remove("bad"),400);return}
+  if(sel===m){G(cur).m.push(m);sel=null;save();renderMatch();scoreG(1)}
+  else{miss++;renderMatch();scoreG();document.querySelector(`[data-m="${m}"]`).classList.add("bad")}
+}
+function rowW(i){
+  const x=D[cur],[t,k]=x.s[i],term=x.v[k][0],done=G(cur).w.includes(i);
+  return `<div class="wr" id="wr${i}"><p>${i+1}. ${t.replace(new RegExp(esc(term),"i"),done?`<b class="win">${term}</b>`:"_____")}</p>`+(done?"":`<p class="hint">Meaning: ${x.v[k][1]}. Starts with “${term[0]}”.</p><div class="row"><input type="text" data-i="${i}" aria-label="Answer ${i+1}" autocomplete="off" placeholder="Type the missing word"><button data-wc="${i}">Check</button></div>`)+`<p class="hint" id="wm${i}"></p></div>`;
+}
+function checkW(i){
+  const x=D[cur],inp=document.querySelector(`#wr${i} input`);
+  if(!inp)return;
+  if(norm(inp.value)===norm(x.v[x.s[i][1]][0])){G(cur).w.push(i);save();$("#wr"+i).outerHTML=rowW(i);scoreG(1)}
+  else{inp.classList.add("bad");setTimeout(()=>inp.classList.remove("bad"),400);$("#wm"+i).textContent="Not quite. Check the meaning and the spelling, then try again."}
+}
+function rowB(i){
+  const x=D[cur],t=x.s[i][0],key=cur+"-"+i,done=G(cur).b.includes(i);
+  if(!bs[key]){let b=shuf(t.split(" "),cur*5+i);if(b.join(" ")===t)b.push(b.shift());bs[key]={a:[],b}}
+  const st=bs[key];
+  return `<div class="br" id="br${i}"><p class="hint">Sentence ${i+1}: build a sentence with “${x.v[x.s[i][1]][0]}”.</p>`+(done?`<p class="chips"><b class="win">${t}</b></p>`:`<div class="chips ans">${st.a.map((w,j)=>`<button class="g" data-ba="${i}:${j}">${w}</button>`).join("")||'<span class="hint">Tap the words below in order</span>'}</div><div class="chips">${st.b.map((w,j)=>`<button class="g" data-bb="${i}:${j}">${w}</button>`).join("")}</div><div class="row"><button data-bc="${i}">Check</button><button class="g" data-br="${i}">Reset</button></div>`)+`<p class="hint" id="bm${i}"></p></div>`;
+}
+const reB=i=>{$("#br"+i).outerHTML=rowB(i)};
+function moveB(s,toAns){const [i,j]=s.split(":").map(Number),st=bs[cur+"-"+i];if(toAns)st.a.push(st.b.splice(j,1)[0]);else st.b.push(st.a.splice(j,1)[0]);reB(i)}
+function checkB(i){
+  const st=bs[cur+"-"+i],t=D[cur].s[i][0];
+  if(st.b.length){$("#bm"+i).textContent="Use all the words first.";return}
+  if(st.a.join(" ")===t){G(cur).b.push(i);save();reB(i);scoreG(1)}
+  else $("#bm"+i).textContent="Not quite right. Tap a word to take it back, then reorder.";
+}
+function resetB(i){const t=D[cur].s[i][0];let b=shuf(t.split(" "),cur*5+i);if(b.join(" ")===t)b.push(b.shift());bs[cur+"-"+i]={a:[],b};reB(i)}
+function renderGames(){
+  renderMatch();
+  $("#write").innerHTML=D[cur].s.map((_,i)=>rowW(i)).join("");
+  $("#build").innerHTML=[0,1,2].map(rowB).join("");
+  scoreG();
+}
+
+function renderDay(){
+  killRec();stopQ();sel=null;miss=0;bs={};
+  const d=cur,x=D[d];
+  $("#day").innerHTML=`<article id="card" class="glass card">
+  <div class="dh"><div class="rw sm">${R}<b id="dpct"></b></div><div class="grow"><h2>Day ${d+1}: ${x.t}</h2><p class="hint">Four 30-minute blocks. Tick each block when done.</p></div></div>
+  <p id="dmsg" class="win" hidden>🔥 2-Hour Grind Completed! Your university journey starts soon!</p>
+
+  <section class="task"><label><input type="checkbox" data-t="0"> Task 1 · ${TASKS[0]}<em>30 min</em></label>
+  <p>Search YouTube for: <b>“${x.yt}”</b></p>
+  <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${encodeURIComponent(x.yt)}">Open YouTube search</a>
+  <p class="hint">Pause after each sentence and repeat it out loud. Copy the speed and tone.</p></section>
+
+  <section class="task"><label><input type="checkbox" data-t="1"> Task 2 · ${TASKS[1]}<em>30 min</em></label>
+  <ol>${x.c.map(c=>`<li>${c}</li>`).join("")}</ol>
+  <div class="time" id="qtime">2:00</div><div class="track"><i id="qbar"></i></div>
+  <div class="row"><button data-a="qs">Start 2-minute drill</button><button class="g" data-a="qr">Reset</button></div>
+  <p id="qmsg" class="hint">Answer the 5 prompts out loud, without stopping.</p></section>
+
+  <section class="task"><label><input type="checkbox" data-t="2"> Task 3 · ${TASKS[2]}<em>30 min</em></label>
+  <div class="vocab">${x.v.map(a=>`<div><b>${a[0]}</b><span>${a[1]}</span></div>`).join("")}</div>
+  <h3>Game 1 · Matching</h3><p class="hint">Tap a word, then tap its meaning.</p><div class="game" id="game"></div>
+  <h3>Game 2 · Writing</h3><p class="hint">Type the missing word from the vocabulary list.</p><div id="write"></div>
+  <h3>Game 3 · Sentence Builder</h3><p class="hint">Tap the shuffled words in the right order.</p><div id="build"></div>
+  <p><b id="gscore"></b></p><p id="badge" class="win"></p></section>
+
+  <section class="task"><label><input type="checkbox" data-t="3"> Task 4 · ${TASKS[3]}<em>30 min</em></label>
+  <div class="topic"><span class="hint">Today's test topic</span><b>${x.tp}</b></div>
+  <p class="hint">Speak about this topic. Recording alone does not complete the task: tick the box when you are happy with your practice.</p>
+  <div class="row"><button id="brec" data-a="rec">● Record</button><button id="bstop" class="g" data-a="stop" disabled>■ Stop</button><button id="bplay" class="g" data-a="play" disabled>▶ Play</button><button class="g" data-a="clr">✕ Remove / Clear</button></div>
+  <p id="bstat" class="hint">Press Record and allow microphone access.</p><div id="fb" aria-live="polite"></div></section>
+  </article>`;
+  renderGames();
+}
+
+function refresh(){
+  let tot=0;for(let d=0;d<7;d++)tot+=dayPct(d)/25;
+  const p=Math.round(tot/28*100);
+  ring("#mring",p);$("#mpct").textContent=p+"%";$("#msub").textContent=tot+" of 28 blocks done";
+  $("#tabs").innerHTML=D.map((x,d)=>`<button class="${d===cur?"on ":""}${dayPct(d)===100?"ok":""}" data-d="${d}">Day ${d+1} · ${dayPct(d)}%</button>`).join("");
+  const c=$("#card");if(!c)return;
+  const pc=dayPct(cur);
+  ring("#dring",pc);$("#dpct").textContent=pc+"%";
+  c.classList.toggle("done",pc===100);$("#dmsg").hidden=pc!==100;
+  c.querySelectorAll("[data-t]").forEach(b=>b.checked=!!T(cur)[b.dataset.t]);
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;const s=b.dataset;
+  if(s.d!==undefined){cur=+s.d;renderDay();refresh()}
+  else if(s.w!==undefined){sel=+s.w;renderMatch()}
+  else if(s.m!==undefined)match(+s.m,b);
+  else if(s.wc!==undefined)checkW(+s.wc);
+  else if(s.bb!==undefined)moveB(s.bb,1);
+  else if(s.ba!==undefined)moveB(s.ba,0);
+  else if(s.bc!==undefined)checkB(+s.bc);
+  else if(s.br!==undefined)resetB(+s.br);
+  else if(s.a)({qs:startQ,qr:resetQ,rec:startRec,stop:stopRec,play:playRec,clr:clearRec,ps:pStart,pp:pPause,pr:pReset,th:theme,yes:()=>showPolish(1),no:()=>showPolish(0)})[s.a]();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.dataset.i!==undefined)checkW(+e.target.dataset.i)});
+document.addEventListener("change",e=>{if(e.target.dataset.t!==undefined)setTask(cur,+e.target.dataset.t,e.target.checked)});
+
+applyTheme();pShow();renderDay();refresh();
+</script>
+</body>
+</html>
